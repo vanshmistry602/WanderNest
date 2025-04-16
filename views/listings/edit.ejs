@@ -1,0 +1,137 @@
+<% layout('/layouts/boilerplate') -%>
+
+<body>
+	<div class="row">
+		<div class="col-8 offset-2">
+			<br /><br />
+			<h3>Edit a Listing</h3>
+			<form
+				action="/listings/<%= listingData._id %>?_method=PUT"
+				method="post"
+				class="needs-validation"
+				novalidate
+				enctype="multipart/form-data"
+			>
+				<div class="mb-3">
+					<label for="title" class="form-label">Title</label>
+					<input
+						type="text"
+						placeholder="Add a Catchy title"
+						name="listing[title]"
+						id="title"
+						class="form-control"
+						value="<%= listingData.title = listingData.title.charAt(0).toUpperCase() + listingData.title.slice(1);%>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please enter a title.</div>
+				</div>
+				<div class="mb-3">
+					<label for="description" class="form-label">Description</label>
+					<textarea
+						name="listing[description]"
+						placeholder="Enter a description"
+						id="description"
+						class="form-control"
+						required
+					>
+<%= listingData.description %></textarea
+					>
+					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please enter a description.</div>
+				</div>
+				<!-- <div class="mb-3">
+					<label for="url" class="form-label">URL</label>
+					<input
+						type="url"
+						placeholder="Enter image url/link"
+						name="listing[image]"
+						id="url"
+						class="form-control"
+						value="<%= listingData.image.url %>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please choose a image.</div>
+				</div> -->
+				<div class="mb-3">
+					<label for="image" class="form-label">Choose new image</label>
+					<input
+						type="file"
+						name="listing[image]"
+						id="image"
+						accept="image/*"
+						class="form-control"
+					/>
+					<p class="m-0 mt-1" style="color: orangered">Current image:</p>
+					<img
+						id="imagePreview"
+						src="<%= modifiedUrl %>"
+						alt="Image Preview"
+						style="height: 100px; width: 200px"
+					/>
+				</div>
+				<div class="mb-3">
+					<label for="price" class="form-label">Price</label>
+					<input
+						type="number"
+						placeholder="Give best suitable price"
+						name="listing[price]"
+						id="price"
+						class="form-control"
+						value="<%= listingData.price %>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please set valid price.</div>
+				</div>
+				<div class="row">
+					<div class="mb-3 col-md-8">
+						<label for="location" class="form-label">Location</label>
+						<input
+							type="text"
+							placeholder="Jaipur, Rajasthan"
+							name="listing[location]"
+							id="location"
+							class="form-control"
+							value="<%= listingData.location %>"
+							required
+						/>
+						<div class="valid-feedback">Looks good!</div>
+						<div class="invalid-feedback">Please enter a location.</div>
+					</div>
+					<div class="mb-3 col-md-4">
+						<label for="country" class="form-label">Country</label>
+						<input
+							type="text"
+							placeholder="India"
+							name="listing[country]"
+							id="country"
+							class="form-control"
+							value="<%= listingData.country %>"
+							required
+						/>
+						<div class="valid-feedback">Looks good!</div>
+						<div class="invalid-feedback">Please enter a country name.</div>
+					</div>
+				</div>
+				<br /><br />
+				<button class="btn btn-dark add-btn">Edit</button>
+				<br /><br />
+			</form>
+		</div>
+	</div>
+</body>
+<script>
+	document.getElementById("image").addEventListener("change", function (event) {
+		const file = event.target.files[0];
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = function (e) {
+				document.getElementById("imagePreview").src = e.target.result;
+			};
+			reader.readAsDataURL(file);
+		}
+	});
+</script>
+<script src="/js/script.js"></script>

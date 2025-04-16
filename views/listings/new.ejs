@@ -1,0 +1,110 @@
+<% layout('/layouts/boilerplate') -%>
+
+<body>
+	<div class="row">
+		<div class="col-8 offset-2">
+			<br /><br />
+			<h3>Create a new Listing</h3>
+			<form
+				action="/listings"
+				method="post"
+				class="needs-validation"
+				novalidate
+				enctype="multipart/form-data"
+			>
+				<div class="mb-3">
+					<label for="title" class="form-label">Title</label>
+					<input
+						type="text"
+						placeholder="Add a Catchy title"
+						name="listing[title]"
+						id="title"
+						class="form-control"
+						minlength="6"
+						maxlength="18"
+						value="<%= randomData.title = randomData.title.charAt(0).toUpperCase() + randomData.title.slice(1);%>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please enter a title.</div>
+				</div>
+				<div class="mb-3">
+					<label for="description" class="form-label">Description</label>
+					<textarea
+						name="listing[description]"
+						placeholder="Enter a description"
+						id="description"
+						class="form-control"
+						minlength="12"
+						maxlength="52"
+						required
+					>
+<%= randomData.description %></textarea
+					>
+					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please enter a description.</div>
+				</div>
+				<div class="mb-3">
+					<label for="image" class="form-label">Image</label>
+					<input
+						type="file"
+						name="listing[image]"
+						id="image"
+						class="form-control"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please choose a image.</div>
+				</div>
+				<div class="mb-3">
+					<label for="price" class="form-label">Price</label>
+					<input
+						type="number"
+						placeholder="Give best suitable price"
+						name="listing[price]"
+						id="price"
+						class="form-control"
+						value="<%= randomData.price %>"
+						required
+					/>
+					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please set valid price.</div>
+				</div>
+				<div class="row">
+					<div class="mb-3 col-md-8">
+						<label for="location" class="form-label">Location</label>
+						<input
+							type="text"
+							placeholder="Jaipur, Rajasthan"
+							name="listing[location]"
+							id="location"
+							class="form-control"
+							value="<%= randomData.location %>"
+							required
+						/>
+						<div class="valid-feedback">Looks good!</div>
+						<div class="invalid-feedback">Please enter a location.</div>
+					</div>
+					<div class="mb-3 col-md-4">
+						<label for="country" class="form-label">Country</label>
+						<input
+							type="text"
+							placeholder="India"
+							name="listing[country]"
+							id="country"
+							class="form-control"
+							value="<%= randomData.country %>"
+							required
+						/>
+						<div class="valid-feedback">Looks good!</div>
+						<div class="invalid-feedback">Please enter a country name.</div>
+					</div>
+				</div>
+				<br /><br />
+				<button class="btn btn-dark add-btn">Add</button>
+				<br /><br />
+			</form>
+		</div>
+	</div>
+</body>
+<script src="/js/script.js"></script>
