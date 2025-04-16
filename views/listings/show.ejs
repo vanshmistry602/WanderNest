@@ -118,7 +118,10 @@
 						action="/listings/<%= listingData._id %>/reviews/<%= reviewData._id %>?_method=DELETE"
 						method="POST"
 					>
+					<% if(currentUser && currentUser._id.equals(reviewData.author._id)){
+			%>
 						<button class="btn btn-sm btn-dark">Delete</button>
+						<% } %>
 					</form>
 				</div>
 				<% } %>
